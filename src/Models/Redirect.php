@@ -37,11 +37,13 @@ class Redirect extends Model implements RedirectModelContract
         parent::boot();
 
         static::saving(function (self $model) {
-            if (trim(strtolower($model->old_url), '/') == trim(strtolower($model->new_url), '/')) {
+            if (trim($model->old_url, '/') == trim($model->new_url, '/')) {
                 throw RedirectException::sameUrls();
             }
 
-            static::whereOldUrl($model->new_url)->whereNewUrl($model->old_url)->delete();
+            static::whereRaw('BINARY `old_url` = ?', [$model->new_url])
+                ->whereRaw('BINARY `new_url` = ?', [$model->old_url])
+                ->delete();
 
             $model->syncOldRedirects($model, $model->new_url);
         });
@@ -77,7 +79,7 @@ class Redirect extends Model implements RedirectModelContract
      */
     public function scopeWhereOldUrl($query, string $url)
     {
-        return $query->where('old_url', $url);
+        return $query->whereRaw('BINARY `old_url` = ?', [$url]);
     }
 
     /**
@@ -90,7 +92,7 @@ class Redirect extends Model implements RedirectModelContract
      */
     public function scopeWhereNewUrl($query, string $url)
     {
-        return $query->where('new_url', $url);
+        return $query->whereRaw('BINARY `new_url` = ?', [$url]);
     }
 
     /**
@@ -131,9 +133,11 @@ class Redirect extends Model implements RedirectModelContract
      */
     public static function findValidOrNull($path): ?RedirectModelContract
     {
-        return static::where('old_url', $path === '/' ? $path : trim($path, '/'))
+        $req = static::whereRaw('BINARY `old_url` = ?', [$path === '/' ? $path : trim($path, '/')])
             ->whereNotNull('new_url')
             ->whereIn('status', array_keys(self::getStatuses()))
-            ->latest()->first();
+            ->latest();
+
+        return $req->first();
     }
 }
