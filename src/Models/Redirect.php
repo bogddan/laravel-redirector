@@ -24,6 +24,7 @@ class Redirect extends Model implements RedirectModelContract
     protected $fillable = [
         'old_url',
         'new_url',
+        'new_url_external',
         'status',
     ];
 
@@ -70,7 +71,7 @@ class Redirect extends Model implements RedirectModelContract
     }
 
     /**
-     * The mutator to set the "new_url" attribute.
+     * The mutator to set the "new_url" attribute if the new url is external.
      *
      * @param string $value
      */
