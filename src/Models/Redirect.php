@@ -70,6 +70,16 @@ class Redirect extends Model implements RedirectModelContract
     }
 
     /**
+     * The mutator to set the "new_url" attribute.
+     *
+     * @param string $value
+     */
+    public function setNewUrlExternalAttribute($value)
+    {
+        $this->attributes['new_url'] = trim($value, '/');
+    }
+
+    /**
      * Filter the query by an old url.
      *
      * @param Builder $query
