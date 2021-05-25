@@ -15,11 +15,11 @@ class RedirectRequests
      */
     public function handle($request, Closure $next)
     {
-        $redirect = app('redirect.model')->findValidOrNull($request->path());
+        $redirect = app('redirect.model')->findValidOrNull(urldecode($request->path()));
 
         if (! $redirect && $request->getQueryString()) {
             $path = $request->path().'?'.$request->getQueryString();
-            $redirect = app('redirect.model')->findValidOrNull($path);
+            $redirect = app('redirect.model')->findValidOrNull(urldecode($path));
         }
 
         if ($redirect && $redirect->exists) {
