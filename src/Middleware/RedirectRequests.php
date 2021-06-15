@@ -3,6 +3,7 @@
 namespace Neurony\Redirects\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 
 class RedirectRequests
 {
@@ -13,8 +14,12 @@ class RedirectRequests
      * @param Closure $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
+        if ($request->is(...config('redirects.exclude', []))) {
+            return $next($request);
+        }
+
         $redirect = app('redirect.model')->findValidOrNull(urldecode($request->path()));
 
         if (! $redirect && $request->getQueryString()) {

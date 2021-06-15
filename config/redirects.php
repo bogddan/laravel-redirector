@@ -30,4 +30,6 @@ return [
     */
     'redirect_model' => \Neurony\Redirects\Models\Redirect::class,
 
+    'exclude' => [],
+
 ];
