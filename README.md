@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/Tofandel/laravel-redirects.svg?branch=master)](https://travis-ci.org/Tofandel/laravel-redirects)
 [![StyleCI](https://github.styleci.io/repos/447570955/shield?branch=master)](https://github.styleci.io/repos/447570955?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Tofandel/laravel-redirects/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Tofandel/laravel-redirects/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/Tofandel/laravel-redirects/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Tofandel/laravel-redirects/?branch=master)
 
 - [Overview](#overview)   
 - [Installation](#installation)   
