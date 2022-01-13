@@ -1,5 +1,6 @@
 composer.lock
 coverage.xml
+coverage
 .phpunit.result.cache
 /.idea
 /vendor

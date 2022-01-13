@@ -16,8 +16,12 @@ class CreateRedirectsTable extends Migration
         Schema::create('redirects', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('old_url')->collation($table->collation.'_bin')->unique();
-            $table->string('new_url')->collation($table->collation.'_bin')->nullable();
+            $connection = config('database.default');
+
+            $collation = explode('_', $table->collation ?: config("database.connections.{$connection}.collation"), 2)[0];
+
+            $table->string('old_url')->collation($collation.'_bin')->unique();
+            $table->string('new_url')->collation($collation.'_bin')->nullable();
             $table->smallInteger('status')->default(301)->index();
 
             $table->timestamps();
