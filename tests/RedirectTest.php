@@ -31,7 +31,6 @@ class RedirectTest extends TestCase
         $response->assertRedirect('https://example.com/new/url');
     }
 
-
     /** @test */
     public function it_redirects_nested_requests()
     {
@@ -107,8 +106,6 @@ class RedirectTest extends TestCase
             'new_url' => 'old_url',
         ]);
         /** @var Redirect $redirect1 */
-
-
         $this->assertNull($redirect1->fresh());
         $this->assertInstanceOf(Redirect::class, $redirect2->fresh());
         $this->assertDatabaseCount('redirects', 1);

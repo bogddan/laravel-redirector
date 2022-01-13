@@ -4,8 +4,8 @@ namespace Tofandel\Redirects\Tests;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Http\Kernel;
-use Tofandel\Redirects\Middleware\RedirectRequests;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Tofandel\Redirects\Middleware\RedirectRequests;
 
 abstract class TestCase extends Orchestra
 {
@@ -13,6 +13,7 @@ abstract class TestCase extends Orchestra
      * Setup the test environment.
      *
      * @return void
+     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function setUp(): void
@@ -26,7 +27,7 @@ abstract class TestCase extends Orchestra
     /**
      * Register the service provider.
      *
-     * @param \Illuminate\Foundation\Application $app
+     * @param  \Illuminate\Foundation\Application  $app
      * @return array
      */
     protected function getPackageProviders($app)
@@ -37,7 +38,7 @@ abstract class TestCase extends Orchestra
     /**
      * Define environment setup.
      *
-     * @param Application $app
+     * @param  Application  $app
      */
     protected function getEnvironmentSetUp($app)
     {
@@ -62,7 +63,8 @@ abstract class TestCase extends Orchestra
     /**
      * Register the middleware.
      *
-     * @param Application $app
+     * @param  Application  $app
+     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function setUpMiddleware(Application $app)

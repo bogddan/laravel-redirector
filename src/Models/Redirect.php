@@ -91,8 +91,7 @@ class Redirect extends Model implements RedirectModelContract
      * Filter the query by an old url.
      *
      * @param  Builder  $query
-     * @param string $url
-     *
+     * @param  string  $url
      * @return Builder
      */
     public function scopeWhereOldUrl(Builder $query, string $url): Builder
@@ -104,8 +103,7 @@ class Redirect extends Model implements RedirectModelContract
      * Filter the query by a new url.
      *
      * @param  Builder  $query
-     * @param string $url
-     *
+     * @param  string  $url
      * @return Builder
      */
     public function scopeWhereNewUrl(Builder $query, string $url): Builder
@@ -126,8 +124,8 @@ class Redirect extends Model implements RedirectModelContract
     /**
      * Sync old redirects to point to the new (final) url.
      *
-     * @param RedirectModelContract $model
-     * @param string $finalUrl
+     * @param  RedirectModelContract  $model
+     * @param  string  $finalUrl
      * @return void
      */
     public function syncOldRedirects(RedirectModelContract $model, string $finalUrl): void
@@ -147,7 +145,6 @@ class Redirect extends Model implements RedirectModelContract
      * - it's status code is one of the statuses defined on this model.
      *
      * @param  string  $path
-     *
      * @return Redirect|null
      */
     public static function findValidOrNull(string $path): ?RedirectModelContract
