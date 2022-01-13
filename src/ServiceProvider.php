@@ -1,15 +1,15 @@
 <?php
 
-namespace Neurony\Redirects;
+namespace Tofandel\Redirects;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use Neurony\Redirects\Contracts\RedirectModelContract;
-use Neurony\Redirects\Middleware\RedirectRequests;
-use Neurony\Redirects\Models\Redirect;
+use Tofandel\Redirects\Contracts\RedirectModelContract;
+use Tofandel\Redirects\Middleware\RedirectRequests;
+use Tofandel\Redirects\Models\Redirect;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -74,7 +74,7 @@ class ServiceProvider extends BaseServiceProvider
             $migration = database_path("migrations/{$timestamp}_create_redirects_table.php");
 
             $this->publishes([
-                __DIR__.'/../database/migrations/create_redirects_table.php.stub' => $migration,
+                __DIR__.'/../database/migrations/0000_00_00_000000_create_redirects_table.php' => $migration,
             ], 'migrations');
         }
     }

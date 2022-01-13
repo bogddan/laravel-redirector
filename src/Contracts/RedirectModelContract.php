@@ -1,32 +1,39 @@
 <?php
 
-namespace Neurony\Redirects\Contracts;
+namespace Tofandel\Redirects\Contracts;
+
+use Illuminate\Database\Eloquent\Builder;
 
 interface RedirectModelContract
 {
     /**
      * @param string $value
      */
-    public function setOldUrlAttribute($value);
+    public function setOldUrlAttribute(string $value);
 
     /**
      * @param string $value
      */
-    public function setNewUrlAttribute($value);
+    public function setNewUrlAttribute(string $value);
+
+
+    public function setNewUrlExternalAttribute(string $value);
 
     /**
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  Builder  $query
      * @param string $url
-     * @return mixed
+     *
+     * @return Builder
      */
-    public function scopeWhereOldUrl($query, string $url);
+    public function scopeWhereOldUrl(Builder $query, string $url): Builder;
 
     /**
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  Builder  $query
      * @param string $url
-     * @return mixed
+     *
+     * @return Builder
      */
-    public function scopeWhereNewUrl($query, string $url);
+    public function scopeWhereNewUrl(Builder $query, string $url): Builder;
 
     /**
      * @return array
@@ -41,8 +48,9 @@ interface RedirectModelContract
     public function syncOldRedirects(self $model, string $finalUrl): void;
 
     /**
-     * @param string $path
+     * @param  string  $path
+     *
      * @return RedirectModelContract|null
      */
-    public static function findValidOrNull($path): ?self;
+    public static function findValidOrNull(string $path): ?self;
 }

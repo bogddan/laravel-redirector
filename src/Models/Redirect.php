@@ -1,12 +1,21 @@
 <?php
 
-namespace Neurony\Redirects\Models;
+namespace Tofandel\Redirects\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Neurony\Redirects\Contracts\RedirectModelContract;
-use Neurony\Redirects\Exceptions\RedirectException;
+use Tofandel\Redirects\Contracts\RedirectModelContract;
+use Tofandel\Redirects\Exceptions\RedirectException;
 
+/**
+ * @property string $new_url
+ * @property string $old_url
+ * @property-write string $new_url_external
+ * @property int $status
+ *
+ * @method static whereNewUrl(string $url): Builder
+ * @method static whereOldUrl(string $url): Builder
+ */
 class Redirect extends Model implements RedirectModelContract
 {
     /**
@@ -38,13 +47,11 @@ class Redirect extends Model implements RedirectModelContract
         parent::boot();
 
         static::saving(function (self $model) {
-            if (trim($model->old_url, '/') == trim($model->new_url, '/')) {
+            if (trim(mb_strtolower($model->old_url), '/') == trim(mb_strtolower($model->new_url), '/')) {
                 throw RedirectException::sameUrls();
             }
 
-            static::whereRaw('BINARY `old_url` = ?', [$model->new_url])
-                ->whereRaw('BINARY `new_url` = ?', [$model->old_url])
-                ->delete();
+            static::whereOldUrl($model->new_url)->whereNewUrl($model->old_url)->delete();
 
             $model->syncOldRedirects($model, $model->new_url);
         });
@@ -53,9 +60,9 @@ class Redirect extends Model implements RedirectModelContract
     /**
      * The mutator to set the "old_url" attribute.
      *
-     * @param string $value
+     * @param  string  $value
      */
-    public function setOldUrlAttribute($value)
+    public function setOldUrlAttribute(string $value)
     {
         $this->attributes['old_url'] = trim(parse_url($value)['path'], '/');
     }
@@ -63,9 +70,9 @@ class Redirect extends Model implements RedirectModelContract
     /**
      * The mutator to set the "new_url" attribute.
      *
-     * @param string $value
+     * @param  string  $value
      */
-    public function setNewUrlAttribute($value)
+    public function setNewUrlAttribute(string $value)
     {
         $this->attributes['new_url'] = trim(parse_url($value)['path'], '/');
     }
@@ -73,9 +80,9 @@ class Redirect extends Model implements RedirectModelContract
     /**
      * The mutator to set the "new_url" attribute if the new url is external.
      *
-     * @param string $value
+     * @param  string  $value
      */
-    public function setNewUrlExternalAttribute($value)
+    public function setNewUrlExternalAttribute(string $value)
     {
         $this->attributes['new_url'] = trim($value, '/');
     }
@@ -83,27 +90,27 @@ class Redirect extends Model implements RedirectModelContract
     /**
      * Filter the query by an old url.
      *
-     * @param Builder $query
+     * @param  Builder  $query
      * @param string $url
      *
-     * @return mixed
+     * @return Builder
      */
-    public function scopeWhereOldUrl($query, string $url)
+    public function scopeWhereOldUrl(Builder $query, string $url): Builder
     {
-        return $query->whereRaw('BINARY `old_url` = ?', [$url]);
+        return $query->where('old_url', $url);
     }
 
     /**
      * Filter the query by a new url.
      *
-     * @param Builder $query
+     * @param  Builder  $query
      * @param string $url
      *
-     * @return mixed
+     * @return Builder
      */
-    public function scopeWhereNewUrl($query, string $url)
+    public function scopeWhereNewUrl(Builder $query, string $url): Builder
     {
-        return $query->whereRaw('BINARY `new_url` = ?', [$url]);
+        return $query->where('new_url', $url);
     }
 
     /**
@@ -139,16 +146,15 @@ class Redirect extends Model implements RedirectModelContract
      * - it has an url to redirect to (new url)
      * - it's status code is one of the statuses defined on this model.
      *
-     * @param string $path
+     * @param  string  $path
+     *
      * @return Redirect|null
      */
-    public static function findValidOrNull($path): ?RedirectModelContract
+    public static function findValidOrNull(string $path): ?RedirectModelContract
     {
-        $req = static::whereRaw('BINARY `old_url` = ?', [$path === '/' ? $path : trim($path, '/')])
+        return static::whereOldUrl($path === '/' ? $path : trim($path, '/'))
             ->whereNotNull('new_url')
             ->whereIn('status', array_keys(self::getStatuses()))
-            ->latest();
-
-        return $req->first();
+            ->latest()->first();
     }
 }

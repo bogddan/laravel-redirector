@@ -1,22 +1,8 @@
-# Package discontinued! Check out VARBOX.IO instead.
-
-Unfortunately this package is now discontinued.   
-Please check out [Varbox](https://varbox.io) (Laravel Admin Panel) for this functionality and much more.
-
-- Buy: [https://varbox.io/buy](https://varbox.io/buy)
-- Docs: [https://varbox.io/docs](https://varbox.io/docs)
-- Demo: [https://demo.varbox.test/admin](https://demo.varbox.test/admin)
-- Repo [https://github.com/VarboxInternational/varbox](https://github.com/VarboxInternational/varbox)
-
-Thank you! 
-
----
-
 ### Nested redirects for Laravel
 
-[![Build Status](https://travis-ci.org/Neurony/laravel-redirects.svg?branch=master)](https://travis-ci.org/Neurony/laravel-redirects)
+[![Build Status](https://travis-ci.org/Tofandel/laravel-redirects.svg?branch=master)](https://travis-ci.org/Tofandel/laravel-redirects)
 [![StyleCI](https://github.styleci.io/repos/189837919/shield?branch=master)](https://github.styleci.io/repos/189837919)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Neurony/laravel-redirects/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Neurony/laravel-redirects/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Tofandel/laravel-redirects/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Tofandel/laravel-redirects/?branch=master)
 
 - [Overview](#overview)   
 - [Installation](#installation)   
@@ -50,19 +36,19 @@ This package can be useful from an SEO perspective, when in your application, yo
 Install the package via Composer:
 
 ```
-composer require neurony/laravel-redirects
+composer require Tofandel/laravel-redirects
 ```
 
 Publish the config file with:
 
 ```
-php artisan vendor:publish --provider="Neurony\Redirects\ServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Tofandel\Redirects\ServiceProvider" --tag="config"
 ```
 
 Publish the migration file with:
 
 ```
-php artisan vendor:publish --provider="Neurony\Redirects\ServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="Tofandel\Redirects\ServiceProvider" --tag="migrations"
 ```
 
 After the migration has been published you can create the `redirects` table by running:
@@ -75,9 +61,9 @@ php artisan migrate
 
 ##### Add the middleware
 
-In order for the redirecting functionality to actually happen, you need to add the `Neurony\Redirects\Middleware\RedirectRequests` middleware.
+In order for the redirecting functionality to actually happen, you need to add the `Tofandel\Redirects\Middleware\RedirectRequests` middleware.
 
-Go to `App\Http\Kernel` and add the `Neurony\Redirects\Middleware\RedirectRequests` middleware in your `$middlewareGroups` groups of choice.
+Go to `App\Http\Kernel` and add the `Tofandel\Redirects\Middleware\RedirectRequests` middleware in your `$middlewareGroups` groups of choice.
 
 ```php
 /**
@@ -88,14 +74,14 @@ Go to `App\Http\Kernel` and add the `Neurony\Redirects\Middleware\RedirectReques
 protected $middlewareGroups = [
     'web' => [
         ...
-        \Neurony\Redirects\Middleware\RedirectRequests::class,
+        \Tofandel\Redirects\Middleware\RedirectRequests::class,
 ```
 
 ##### Creating redirects
 
-You should never use the `Neurony\Redirects\Models\Redirect` directly, as this is the default concrete implementation for the `Neurony\Redirects\Contracts\RedirectModelContract`.   
+You should never use the `Tofandel\Redirects\Models\Redirect` directly, as this is the default concrete implementation for the `Tofandel\Redirects\Contracts\RedirectModelContract`.   
   
-Using the `Neurony\Redirects\Models\Redirect` model class directly will prevent you from being able to extend the model's capabilities.
+Using the `Tofandel\Redirects\Models\Redirect` model class directly will prevent you from being able to extend the model's capabilities.
 
 You can create redirects that will be stored inside the `redirects` table like this:   
 
@@ -107,7 +93,7 @@ app('redirect.model')->create([
 ]);
 ```
 
-To see how you can extend the `Neurony\Redirects\Models\Redirect` model's capabilities, please read the comments from `/config/redirects.php -> redirect_model`
+To see how you can extend the `Tofandel\Redirects\Models\Redirect` model's capabilities, please read the comments from `/config/redirects.php -> redirect_model`
 
 ### Credits
 
@@ -116,7 +102,7 @@ To see how you can extend the `Neurony\Redirects\Models\Redirect` model's capabi
 
 ### Security
 
-If you discover any security related issues, please email andrei.badea@neurony.ro instead of using the issue tracker.
+If you discover any security related issues, please email andrei.badea@Tofandel.ro instead of using the issue tracker.
 
 ### License
 

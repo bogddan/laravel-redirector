@@ -1,10 +1,10 @@
 <?php
 
-namespace Neurony\Redirects\Tests;
+namespace Tofandel\Redirects\Tests;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Http\Kernel;
-use Neurony\Redirects\Middleware\RedirectRequests;
+use Tofandel\Redirects\Middleware\RedirectRequests;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
@@ -56,7 +56,7 @@ abstract class TestCase extends Orchestra
      */
     protected function setUpDatabase(Application $app)
     {
-        $this->loadMigrationsFrom(__DIR__.'/Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
     /**

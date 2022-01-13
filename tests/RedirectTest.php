@@ -1,9 +1,9 @@
 <?php
 
-namespace Neurony\Redirects\Tests;
+namespace Tofandel\Redirects\Tests;
 
-use Neurony\Redirects\Exceptions\RedirectException;
-use Neurony\Redirects\Models\Redirect;
+use Tofandel\Redirects\Exceptions\RedirectException;
+use Tofandel\Redirects\Models\Redirect;
 
 class RedirectTest extends TestCase
 {
@@ -12,12 +12,25 @@ class RedirectTest extends TestCase
     {
         Redirect::create([
             'old_url' => 'old-url',
-            'new_url' => 'new/url',
+            'new_url' => 'https://example.com/new/url',
         ]);
 
         $response = $this->get('old-url');
         $response->assertRedirect('new/url');
     }
+
+    /** @test */
+    public function it_redirects_to_an_external_url()
+    {
+        Redirect::create([
+            'old_url' => 'old-url',
+            'new_url_external' => 'https://example.com/new/url',
+        ]);
+
+        $response = $this->get('old-url');
+        $response->assertRedirect('https://example.com/new/url');
+    }
+
 
     /** @test */
     public function it_redirects_nested_requests()
@@ -79,5 +92,25 @@ class RedirectTest extends TestCase
             'old_url' => 'same-url',
             'new_url' => 'same-url',
         ]);
+    }
+
+    /** @test */
+    public function it_guards_against_creating_long_redirect_loops()
+    {
+        $redirect1 = Redirect::create([
+            'old_url' => 'old_url',
+            'new_url' => 'new_url',
+        ]);
+
+        $redirect2 = Redirect::create([
+            'old_url' => 'new_url',
+            'new_url' => 'old_url',
+        ]);
+        /** @var Redirect $redirect1 */
+
+
+        $this->assertNull($redirect1->fresh());
+        $this->assertInstanceOf(Redirect::class, $redirect2->fresh());
+        $this->assertDatabaseCount('redirects', 1);
     }
 }

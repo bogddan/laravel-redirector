@@ -1,11 +1,11 @@
 <?php
 
-namespace Neurony\Redirects\Tests;
+namespace Tofandel\Redirects\Tests;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use Neurony\Redirects\Contracts\RedirectModelContract;
-use Neurony\Redirects\Models\Redirect;
+use Tofandel\Redirects\Contracts\RedirectModelContract;
+use Tofandel\Redirects\Models\Redirect;
 
 class ServiceProvider extends BaseServiceProvider
 {

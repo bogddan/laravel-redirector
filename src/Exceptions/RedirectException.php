@@ -1,6 +1,6 @@
 <?php
 
-namespace Neurony\Redirects\Exceptions;
+namespace Tofandel\Redirects\Exceptions;
 
 use Exception;
 
@@ -11,7 +11,7 @@ class RedirectException extends Exception
      *
      * @return static
      */
-    public static function sameUrls()
+    public static function sameUrls(): RedirectException
     {
         return new static('The old url cannot be the same as the new url!');
     }
