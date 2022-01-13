@@ -43,16 +43,10 @@ class ServiceProvider extends BaseServiceProvider
 
     /**
      * Setup the config.
-     *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     protected function publishConfigs()
     {
-        $this->app->make('config')->set('redirects.statuses', [
-            302 => 'Normal (302)',
-            301 => 'Permanent (301)',
-            307 => 'Temporary (307)',
-        ]);
+        $this->mergeConfigFrom(__DIR__.'/../config/redirects.php', 'redirects');
     }
 
     /**

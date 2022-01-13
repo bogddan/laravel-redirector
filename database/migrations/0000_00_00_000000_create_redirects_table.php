@@ -18,7 +18,7 @@ class CreateRedirectsTable extends Migration
 
             $table->string('old_url')->collation($table->collation.'_bin')->unique();
             $table->string('new_url')->collation($table->collation.'_bin')->nullable();
-            $table->smallInteger('status')->default(301);
+            $table->smallInteger('status')->default(301)->index();
 
             $table->timestamps();
         });

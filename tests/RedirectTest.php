@@ -2,6 +2,7 @@
 
 namespace Tofandel\Redirects\Tests;
 
+use Illuminate\Support\Facades\Route;
 use Tofandel\Redirects\Exceptions\RedirectException;
 use Tofandel\Redirects\Models\Redirect;
 
@@ -17,6 +18,24 @@ class RedirectTest extends TestCase
 
         $response = $this->get('old-url');
         $response->assertRedirect('new/url');
+    }
+    /** @test */
+    public function it_redirects_a_request_with_querystring()
+    {
+        Route::get('old-url', function () {
+            return response('Hi from old-url');
+        });
+
+        Redirect::create([
+            'old_url' => 'old-url?obsolete=1#frag',
+            'new_url' => 'new/url?12=a#frag',
+        ]);
+
+        $response = $this->get('old-url');
+        $response->assertSeeText('old-url');
+
+        $response = $this->get('old-url?obsolete=1');
+        $response->assertRedirect('new/url?12=a#frag');
     }
 
     /** @test */
@@ -109,5 +128,38 @@ class RedirectTest extends TestCase
         $this->assertNull($redirect1->fresh());
         $this->assertInstanceOf(Redirect::class, $redirect2->fresh());
         $this->assertDatabaseCount('redirects', 1);
+    }
+
+    /** @test */
+    public function it_excludes_redirects_from_happening() {
+        config(['redirects.exclude' => [
+           'excluded'
+        ]]);
+
+        Route::get('real-url', function () {
+            return response('Hi from real-url');
+        });
+        Route::get('excluded', function () {
+            return response('Hi from excluded');
+        });
+
+        Redirect::create([
+            'old_url' => 'excluded',
+            'new_url' => 'real-url',
+        ]);
+
+        $response = $this->get('excluded');
+        $response->assertSuccessful();
+        $response->assertSeeText('excluded');
+    }
+
+
+    /** @test */
+    public function it_does_business_as_usual() {
+        Route::get('some-normal-url', function () {
+            return response('Hi');
+        });
+        $response = $this->get('some-normal-url');
+        $response->assertSuccessful();
     }
 }

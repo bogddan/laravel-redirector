@@ -64,7 +64,19 @@ class Redirect extends Model implements RedirectModelContract
      */
     public function setOldUrlAttribute(string $value)
     {
-        $this->attributes['old_url'] = trim(parse_url($value)['path'], '/');
+        $this->attributes['old_url'] = $this->parseRelativeUrl($value, false);
+    }
+
+    protected function parseRelativeUrl(string $url, $fragment = true): string {
+        $parsed = parse_url($url);
+        $path = $parsed['path'];
+        if (!empty($parsed['query'])) {
+            $path .= '?' . $parsed['query'];
+        }
+        if ($fragment && !empty($parsed['fragment'])) {
+            $path .= '#' . $parsed['fragment'];
+        }
+        return trim($path, '/');
     }
 
     /**
@@ -74,7 +86,7 @@ class Redirect extends Model implements RedirectModelContract
      */
     public function setNewUrlAttribute(string $value)
     {
-        $this->attributes['new_url'] = trim(parse_url($value)['path'], '/');
+        $this->attributes['new_url'] = $this->parseRelativeUrl($value);
     }
 
     /**

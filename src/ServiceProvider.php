@@ -59,6 +59,8 @@ class ServiceProvider extends BaseServiceProvider
      */
     protected function publishConfigs()
     {
+        $this->mergeConfigFrom(realpath(__DIR__.'/../config/redirects.php'), 'redirects');
+
         $this->publishes([
             __DIR__.'/../config/redirects.php' => config_path('redirects.php'),
         ], 'config');
