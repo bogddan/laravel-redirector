@@ -19,6 +19,7 @@ class RedirectTest extends TestCase
         $response = $this->get('old-url');
         $response->assertRedirect('new/url');
     }
+
     /** @test */
     public function it_redirects_a_request_with_querystring()
     {
@@ -131,9 +132,10 @@ class RedirectTest extends TestCase
     }
 
     /** @test */
-    public function it_excludes_redirects_from_happening() {
+    public function it_excludes_redirects_from_happening()
+    {
         config(['redirects.exclude' => [
-           'excluded'
+            'excluded',
         ]]);
 
         Route::get('real-url', function () {
@@ -153,9 +155,9 @@ class RedirectTest extends TestCase
         $response->assertSeeText('excluded');
     }
 
-
     /** @test */
-    public function it_does_business_as_usual() {
+    public function it_does_business_as_usual()
+    {
         Route::get('some-normal-url', function () {
             return response('Hi');
         });
