@@ -21,7 +21,7 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * Create a new service provider instance.
      *
-     * @param Application $app
+     * @param  Application  $app
      */
     public function __construct(Application $app)
     {
@@ -31,7 +31,7 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * Bootstrap the application services.
      *
-     * @param Router $router
+     * @param  Router  $router
      * @return void
      */
     public function boot(Router $router)
