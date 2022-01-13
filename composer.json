@@ -1,6 +1,5 @@
 {
     "name": "tofandel/laravel-redirects",
-    "version": "4.0.0",
     "description": "Nested URLs redirect logic for Laravel",
     "license": "MIT",
     "keywords": [
