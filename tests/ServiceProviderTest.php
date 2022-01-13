@@ -2,11 +2,9 @@
 
 namespace Tofandel\Redirects\Tests;
 
-use ArrayAccess;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Mockery;
 use Tofandel\Redirects\Contracts\RedirectModelContract;
@@ -35,8 +33,7 @@ class ServiceProviderTest extends TestCase
 
     public function setUp(): void
     {
-
-        $this->config   = new Repository();
+        $this->config = new Repository();
 
         $this->application_mock = Mockery::mock(Application::class);
         $this->application_mock->shouldReceive('make')->zeroOrMoreTimes()->with('path.config')->andReturn('/some/config/path');

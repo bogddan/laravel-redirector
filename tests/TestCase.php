@@ -4,7 +4,6 @@ namespace Tofandel\Redirects\Tests;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Http\Kernel;
-use Illuminate\Routing\Router;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Tofandel\Redirects\Middleware\RedirectRequests;
 

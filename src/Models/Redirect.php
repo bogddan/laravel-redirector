@@ -67,15 +67,17 @@ class Redirect extends Model implements RedirectModelContract
         $this->attributes['old_url'] = $this->parseRelativeUrl($value, false);
     }
 
-    protected function parseRelativeUrl(string $url, $fragment = true): string {
+    protected function parseRelativeUrl(string $url, $fragment = true): string
+    {
         $parsed = parse_url($url);
         $path = $parsed['path'];
-        if (!empty($parsed['query'])) {
-            $path .= '?' . $parsed['query'];
+        if (! empty($parsed['query'])) {
+            $path .= '?'.$parsed['query'];
         }
-        if ($fragment && !empty($parsed['fragment'])) {
-            $path .= '#' . $parsed['fragment'];
+        if ($fragment && ! empty($parsed['fragment'])) {
+            $path .= '#'.$parsed['fragment'];
         }
+
         return trim($path, '/');
     }
 
