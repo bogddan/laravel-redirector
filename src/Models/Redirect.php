@@ -13,8 +13,8 @@ use Tofandel\Redirects\Exceptions\RedirectException;
  * @property-write string $new_url_external
  * @property int $status
  *
- * @method static whereNewUrl(string $url): Builder
- * @method static whereOldUrl(string $url): Builder
+ * @method static Builder whereNewUrl(string $url)
+ * @method static Builder whereOldUrl(string $url)
  */
 class Redirect extends Model implements RedirectModelContract
 {
@@ -159,7 +159,7 @@ class Redirect extends Model implements RedirectModelContract
      * - it's status code is one of the statuses defined on this model.
      *
      * @param  string  $path
-     * @return Redirect|null
+     * @return Redirect|Model|null
      */
     public static function findValidOrNull(string $path): ?RedirectModelContract
     {
