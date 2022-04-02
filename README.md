@@ -103,7 +103,7 @@ To see how you can extend the `Tofandel\Redirects\Models\Redirect` model's capab
 
 ### Security
 
-If you discover any security related issues, please email andrei.badea@Tofandel.ro instead of using the issue tracker.
+If you discover any security related issues, please email tofandel@tukan.hu instead of using the issue tracker.
 
 ### License
 
