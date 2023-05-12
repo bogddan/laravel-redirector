@@ -20,17 +20,13 @@ class Redirect extends Model implements RedirectModelContract
 {
     /**
      * The database table.
-     *
-     * @var string
      */
-    protected $table = 'redirects';
+    protected string $table = 'redirects';
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var array
      */
-    protected $fillable = [
+    protected array $fillable = [
         'old_url',
         'new_url',
         'new_url_external',
@@ -39,10 +35,8 @@ class Redirect extends Model implements RedirectModelContract
 
     /**
      * Boot the model.
-     *
-     * @return void
      */
-    public static function boot()
+    public static function boot(): void
     {
         parent::boot();
 
@@ -59,10 +53,8 @@ class Redirect extends Model implements RedirectModelContract
 
     /**
      * The mutator to set the "old_url" attribute.
-     *
-     * @param  string  $value
      */
-    public function setOldUrlAttribute(string $value)
+    public function setOldUrlAttribute(string $value): void
     {
         $this->attributes['old_url'] = $this->parseRelativeUrl($value, false);
     }
@@ -83,30 +75,22 @@ class Redirect extends Model implements RedirectModelContract
 
     /**
      * The mutator to set the "new_url" attribute.
-     *
-     * @param  string  $value
      */
-    public function setNewUrlAttribute(string $value)
+    public function setNewUrlAttribute(string $value): void
     {
         $this->attributes['new_url'] = $this->parseRelativeUrl($value);
     }
 
     /**
      * The mutator to set the "new_url" attribute if the new url is external.
-     *
-     * @param  string  $value
      */
-    public function setNewUrlExternalAttribute(string $value)
+    public function setNewUrlExternalAttribute(string $value): void
     {
         $this->attributes['new_url'] = trim($value, '/');
     }
 
     /**
      * Filter the query by an old url.
-     *
-     * @param  Builder  $query
-     * @param  string  $url
-     * @return Builder
      */
     public function scopeWhereOldUrl(Builder $query, string $url): Builder
     {
@@ -115,10 +99,6 @@ class Redirect extends Model implements RedirectModelContract
 
     /**
      * Filter the query by a new url.
-     *
-     * @param  Builder  $query
-     * @param  string  $url
-     * @return Builder
      */
     public function scopeWhereNewUrl(Builder $query, string $url): Builder
     {
@@ -127,8 +107,6 @@ class Redirect extends Model implements RedirectModelContract
 
     /**
      * Get all redirect statuses defined inside the "config/redirects.php" file.
-     *
-     * @return array
      */
     public static function getStatuses(): array
     {
@@ -137,10 +115,6 @@ class Redirect extends Model implements RedirectModelContract
 
     /**
      * Sync old redirects to point to the new (final) url.
-     *
-     * @param  RedirectModelContract  $model
-     * @param  string  $finalUrl
-     * @return void
      */
     public function syncOldRedirects(RedirectModelContract $model, string $finalUrl): void
     {
@@ -157,9 +131,6 @@ class Redirect extends Model implements RedirectModelContract
      * A redirect is valid if:
      * - it has an url to redirect to (new url)
      * - it's status code is one of the statuses defined on this model.
-     *
-     * @param  string  $path
-     * @return Redirect|Model|null
      */
     public static function findValidOrNull(string $path): ?RedirectModelContract
     {

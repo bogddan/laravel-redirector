@@ -13,15 +13,10 @@ use Bogddan\Redirects\Models\Redirect;
 
 class ServiceProvider extends BaseServiceProvider
 {
-    /**
-     * @var Router
-     */
-    protected $router;
+    protected Router $router;
 
     /**
      * Create a new service provider instance.
-     *
-     * @param  Application  $app
      */
     public function __construct(Application $app)
     {
@@ -30,11 +25,8 @@ class ServiceProvider extends BaseServiceProvider
 
     /**
      * Bootstrap the application services.
-     *
-     * @param  Router  $router
-     * @return void
      */
-    public function boot(Router $router)
+    public function boot(Router $router): void
     {
         $this->router = $router;
 
@@ -46,18 +38,13 @@ class ServiceProvider extends BaseServiceProvider
 
     /**
      * Register the application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->registerBindings();
     }
 
-    /**
-     * @return void
-     */
-    protected function publishConfigs()
+    protected function publishConfigs(): void
     {
         $this->mergeConfigFrom(realpath(__DIR__.'/../config/redirects.php'), 'redirects');
 
@@ -66,10 +53,7 @@ class ServiceProvider extends BaseServiceProvider
         ], 'config');
     }
 
-    /**
-     * @return void
-     */
-    protected function publishMigrations()
+    protected function publishMigrations(): void
     {
         if (empty(File::glob(database_path('migrations/*_create_redirects_table.php')))) {
             $timestamp = date('Y_m_d_His', time());
@@ -81,26 +65,17 @@ class ServiceProvider extends BaseServiceProvider
         }
     }
 
-    /**
-     * @return void
-     */
-    protected function registerMiddleware()
+    protected function registerMiddleware(): void
     {
         $this->router->aliasMiddleware('redirect.requests', RedirectRequests::class);
     }
 
-    /**
-     * @return void
-     */
-    protected function registerRouteBindings()
+    protected function registerRouteBindings(): void
     {
         Route::model('redirect', RedirectModelContract::class);
     }
 
-    /**
-     * @return void
-     */
-    protected function registerBindings()
+    protected function registerBindings(): void
     {
         $this->app->bind(RedirectModelContract::class, $this->config['redirects']['redirect_model'] ?? Redirect::class);
         $this->app->alias(RedirectModelContract::class, 'redirect.model');

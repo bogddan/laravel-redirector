@@ -9,10 +9,6 @@ class RedirectRequests
 {
     /**
      * Handle an incoming request.
-     *
-     * @param  Request  $request
-     * @param  Closure  $next
-     * @return mixed
      */
     public function handle(Request $request, Closure $next)
     {
@@ -24,7 +20,7 @@ class RedirectRequests
         $redirect = app('redirect.model')->findValidOrNull($path);
 
         if (! $redirect && $request->getQueryString()) {
-            $path = $path.'?'.$request->getQueryString();
+            $path .= '?' . $request->getQueryString();
             $redirect = app('redirect.model')->findValidOrNull(urldecode($path));
         }
 
