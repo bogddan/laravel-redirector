@@ -1,11 +1,11 @@
 <?php
 
-namespace Tofandel\Redirects\Models;
+namespace Bogddan\Redirects\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Tofandel\Redirects\Contracts\RedirectModelContract;
-use Tofandel\Redirects\Exceptions\RedirectException;
+use Bogddan\Redirects\Contracts\RedirectModelContract;
+use Bogddan\Redirects\Exceptions\RedirectException;
 
 /**
  * @property string $new_url

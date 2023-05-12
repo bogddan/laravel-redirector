@@ -1,11 +1,11 @@
 <?php
 
-namespace Tofandel\Redirects\Tests;
+namespace Bogddan\Redirects\Tests;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Http\Kernel;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Tofandel\Redirects\Middleware\RedirectRequests;
+use Bogddan\Redirects\Middleware\RedirectRequests;
 
 abstract class TestCase extends Orchestra
 {

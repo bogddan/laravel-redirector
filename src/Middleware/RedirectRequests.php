@@ -1,6 +1,6 @@
 <?php
 
-namespace Tofandel\Redirects\Middleware;
+namespace Bogddan\Redirects\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;

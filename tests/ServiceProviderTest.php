@@ -1,15 +1,15 @@
 <?php
 
-namespace Tofandel\Redirects\Tests;
+namespace Bogddan\Redirects\Tests;
 
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Mockery;
-use Tofandel\Redirects\Contracts\RedirectModelContract;
-use Tofandel\Redirects\Middleware\RedirectRequests;
-use Tofandel\Redirects\Models\Redirect;
+use Bogddan\Redirects\Contracts\RedirectModelContract;
+use Bogddan\Redirects\Middleware\RedirectRequests;
+use Bogddan\Redirects\Models\Redirect;
 
 class ServiceProviderTest extends TestCase
 {
@@ -41,7 +41,7 @@ class ServiceProviderTest extends TestCase
 
         $this->router_mock = Mockery::mock(Router::class);
 
-        $this->service_provider = new \Tofandel\Redirects\ServiceProvider($this->application_mock);
+        $this->service_provider = new \Bogddan\Redirects\ServiceProvider($this->application_mock);
 
         parent::setUp();
     }

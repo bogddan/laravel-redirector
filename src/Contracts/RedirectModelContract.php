@@ -1,6 +1,6 @@
 <?php
 
-namespace Tofandel\Redirects\Contracts;
+namespace Bogddan\Redirects\Contracts;
 
 use Illuminate\Database\Eloquent\Builder;
 

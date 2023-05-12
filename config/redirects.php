@@ -20,15 +20,15 @@ return [
     | To extend or replace this functionality, change the value below with your full "redirect model" FQN.
     |
     | Your class will have to (first option is recommended):
-    | - extend the "Tofandel\Redirects\Models\Redirect" class
-    | - or at least implement the "Tofandel\Redirects\Contracts\RedirectModelContract" interface.
+    | - extend the "Bogddan\Redirects\Models\Redirect" class
+    | - or at least implement the "Bogddan\Redirects\Contracts\RedirectModelContract" interface.
     |
     | Regardless of the concrete implementation below, you can still use it like:
-    | - app('redirect.model') OR app('\Tofandel\Redirects\Contracts\RedirectsModelContract')
+    | - app('redirect.model') OR app('\Bogddan\Redirects\Contracts\RedirectsModelContract')
     | - or you could even use your own class as a direct implementation
     |
     */
-    'redirect_model' => \Tofandel\Redirects\Models\Redirect::class,
+    'redirect_model' => \Bogddan\Redirects\Models\Redirect::class,
 
     'exclude' => [],
 

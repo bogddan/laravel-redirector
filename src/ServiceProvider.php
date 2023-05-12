@@ -1,15 +1,15 @@
 <?php
 
-namespace Tofandel\Redirects;
+namespace Bogddan\Redirects;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use Tofandel\Redirects\Contracts\RedirectModelContract;
-use Tofandel\Redirects\Middleware\RedirectRequests;
-use Tofandel\Redirects\Models\Redirect;
+use Bogddan\Redirects\Contracts\RedirectModelContract;
+use Bogddan\Redirects\Middleware\RedirectRequests;
+use Bogddan\Redirects\Models\Redirect;
 
 class ServiceProvider extends BaseServiceProvider
 {

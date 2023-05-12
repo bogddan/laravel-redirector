@@ -1,9 +1,9 @@
 ### Nested redirects for Laravel
 
-[![Build Status](https://travis-ci.org/Tofandel/laravel-redirects.svg?branch=master)](https://travis-ci.org/Tofandel/laravel-redirects)
+[![Build Status](https://travis-ci.org/Bogddan/laravel-redirects.svg?branch=master)](https://travis-ci.org/Bogddan/laravel-redirects)
 [![StyleCI](https://github.styleci.io/repos/447570955/shield?branch=master)](https://github.styleci.io/repos/447570955?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Tofandel/laravel-redirects/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Tofandel/laravel-redirects/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/Tofandel/laravel-redirects/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Tofandel/laravel-redirects/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Bogddan/laravel-redirects/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Bogddan/laravel-redirects/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/Bogddan/laravel-redirects/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Bogddan/laravel-redirects/?branch=master)
 
 - [Overview](#overview)   
 - [Installation](#installation)   
@@ -37,19 +37,19 @@ This package can be useful from an SEO perspective, when in your application, yo
 Install the package via Composer:
 
 ```
-composer require Tofandel/laravel-redirects
+composer require Bogddan/laravel-redirects
 ```
 
 Publish the config file with:
 
 ```
-php artisan vendor:publish --provider="Tofandel\Redirects\ServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Bogddan\Redirects\ServiceProvider" --tag="config"
 ```
 
 Publish the migration file with:
 
 ```
-php artisan vendor:publish --provider="Tofandel\Redirects\ServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="Bogddan\Redirects\ServiceProvider" --tag="migrations"
 ```
 
 After the migration has been published you can create the `redirects` table by running:
@@ -62,9 +62,9 @@ php artisan migrate
 
 ##### Add the middleware
 
-In order for the redirecting functionality to actually happen, you need to add the `Tofandel\Redirects\Middleware\RedirectRequests` middleware.
+In order for the redirecting functionality to actually happen, you need to add the `Bogddan\Redirects\Middleware\RedirectRequests` middleware.
 
-Go to `App\Http\Kernel` and add the `Tofandel\Redirects\Middleware\RedirectRequests` middleware in your `$middlewareGroups` groups of choice.
+Go to `App\Http\Kernel` and add the `Bogddan\Redirects\Middleware\RedirectRequests` middleware in your `$middlewareGroups` groups of choice.
 
 ```php
 /**
@@ -75,14 +75,14 @@ Go to `App\Http\Kernel` and add the `Tofandel\Redirects\Middleware\RedirectReque
 protected $middlewareGroups = [
     'web' => [
         ...
-        \Tofandel\Redirects\Middleware\RedirectRequests::class,
+        \Bogddan\Redirects\Middleware\RedirectRequests::class,
 ```
 
 ##### Creating redirects
 
-You should never use the `Tofandel\Redirects\Models\Redirect` directly, as this is the default concrete implementation for the `Tofandel\Redirects\Contracts\RedirectModelContract`.   
+You should never use the `Bogddan\Redirects\Models\Redirect` directly, as this is the default concrete implementation for the `Bogddan\Redirects\Contracts\RedirectModelContract`.   
   
-Using the `Tofandel\Redirects\Models\Redirect` model class directly will prevent you from being able to extend the model's capabilities.
+Using the `Bogddan\Redirects\Models\Redirect` model class directly will prevent you from being able to extend the model's capabilities.
 
 You can create redirects that will be stored inside the `redirects` table like this:   
 
@@ -94,7 +94,7 @@ app('redirect.model')->create([
 ]);
 ```
 
-To see how you can extend the `Tofandel\Redirects\Models\Redirect` model's capabilities, please read the comments from `/config/redirects.php -> redirect_model`
+To see how you can extend the `Bogddan\Redirects\Models\Redirect` model's capabilities, please read the comments from `/config/redirects.php -> redirect_model`
 
 ### Credits
 
@@ -103,7 +103,7 @@ To see how you can extend the `Tofandel\Redirects\Models\Redirect` model's capab
 
 ### Security
 
-If you discover any security related issues, please email tofandel@tukan.hu instead of using the issue tracker.
+If you discover any security related issues, please email Bogddan@tukan.hu instead of using the issue tracker.
 
 ### License
 

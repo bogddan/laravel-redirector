@@ -1,6 +1,6 @@
 <?php
 
-namespace Tofandel\Redirects\Exceptions;
+namespace Bogddan\Redirects\Exceptions;
 
 use Exception;
 

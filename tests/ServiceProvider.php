@@ -1,11 +1,11 @@
 <?php
 
-namespace Tofandel\Redirects\Tests;
+namespace Bogddan\Redirects\Tests;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use Tofandel\Redirects\Contracts\RedirectModelContract;
-use Tofandel\Redirects\Models\Redirect;
+use Bogddan\Redirects\Contracts\RedirectModelContract;
+use Bogddan\Redirects\Models\Redirect;
 
 class ServiceProvider extends BaseServiceProvider
 {

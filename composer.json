@@ -1,5 +1,5 @@
 {
-    "name": "tofandel/laravel-redirects",
+    "name": "Bogddan/laravel-redirects",
     "description": "Nested URLs redirect logic for Laravel",
     "license": "MIT",
     "keywords": [
@@ -35,12 +35,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Tofandel\\Redirects\\": "src/"
+            "Bogddan\\Redirects\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tofandel\\Redirects\\Tests\\": "tests"
+            "Bogddan\\Redirects\\Tests\\": "tests"
         },
         "classmap": [
             "tests/TestCase.php"
@@ -55,7 +55,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Tofandel\\Redirects\\ServiceProvider"
+                "Bogddan\\Redirects\\ServiceProvider"
             ]
         }
     }

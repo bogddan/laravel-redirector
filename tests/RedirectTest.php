@@ -1,10 +1,10 @@
 <?php
 
-namespace Tofandel\Redirects\Tests;
+namespace Bogddan\Redirects\Tests;
 
 use Illuminate\Support\Facades\Route;
-use Tofandel\Redirects\Exceptions\RedirectException;
-use Tofandel\Redirects\Models\Redirect;
+use Bogddan\Redirects\Exceptions\RedirectException;
+use Bogddan\Redirects\Models\Redirect;
 
 class RedirectTest extends TestCase
 {
