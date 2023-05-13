@@ -46,21 +46,21 @@ class ServiceProvider extends BaseServiceProvider
 
     protected function publishConfigs(): void
     {
-        $this->mergeConfigFrom(realpath(__DIR__.'/../config/redirects.php'), 'redirects');
+        $this->mergeConfigFrom(\dirname(__DIR__) . '/config/redirects.php', 'redirects');
 
         $this->publishes([
-            __DIR__.'/../config/redirects.php' => config_path('redirects.php'),
+            __DIR__ . '/../config/redirects.php' => config_path('redirects.php'),
         ], 'config');
     }
 
     protected function publishMigrations(): void
     {
         if (empty(File::glob(database_path('migrations/*_create_redirects_table.php')))) {
-            $timestamp = date('Y_m_d_His', time());
+            $timestamp = date('Y_m_d_His');
             $migration = database_path("migrations/{$timestamp}_create_redirects_table.php");
 
             $this->publishes([
-                __DIR__.'/../database/migrations/0000_00_00_000000_create_redirects_table.php' => $migration,
+                __DIR__ . '/../database/migrations/0000_00_00_000000_create_redirects_table.php' => $migration,
             ], 'migrations');
         }
     }

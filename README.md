@@ -5,14 +5,14 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Bogddan/laravel-redirects/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Bogddan/laravel-redirects/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/Bogddan/laravel-redirects/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Bogddan/laravel-redirects/?branch=master)
 
-- [Overview](#overview)   
-- [Installation](#installation)   
-- [Usage](#usage)   
+- [Overview](#overview)
+- [Installation](#installation)
+- [Usage](#usage)
 
 ### Overview
 
-This package allows you to create simple or multiple nested redirects for your Laravel applications.   
-   
+This package allows you to create simple or multiple nested redirects for your Laravel applications.
+
 This package can be useful from an SEO perspective, when in your application, you have URLs that have the potential of being modified.
    
 **Example of the dynamic redirecting logic:**
@@ -62,7 +62,8 @@ php artisan migrate
 
 ##### Add the middleware
 
-In order for the redirecting functionality to actually happen, you need to add the `Bogddan\Redirects\Middleware\RedirectRequests` middleware.
+In order for the redirecting functionality to actually happen, you need to add
+the `Bogddan\Redirects\Middleware\RedirectRequests` middleware.
 
 Go to `App\Http\Kernel` and add the `Bogddan\Redirects\Middleware\RedirectRequests` middleware in your `$middlewareGroups` groups of choice.
 

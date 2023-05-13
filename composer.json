@@ -1,5 +1,5 @@
 {
-    "name": "Bogddan/laravel-redirects",
+    "name": "bogddan/laravel-redirects",
     "description": "Nested URLs redirect logic for Laravel",
     "license": "MIT",
     "keywords": [
@@ -30,6 +30,7 @@
         "illuminate/database": "^10.0"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "orchestra/testbench": "^8.5",
         "phpunit/phpunit": "^10.0"
     },

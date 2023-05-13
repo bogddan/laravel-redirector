@@ -11,15 +11,19 @@ class CreateRedirectsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('redirects', function (Blueprint $table) {
+        Schema::create('redirects', static function (Blueprint $table) {
             $table->bigIncrements('id');
 
             $connection = config('database.default');
 
-            $collation = explode('_', $table->collation ?: config("database.connections.{$connection}.collation", 'utf8mb4_unicode_ci'), 2)[0] ?: 'utf8mb4';
+            $collation = explode(
+                '_',
+                $table->collation ?: config("database.connections.$connection.collation", 'utf8mb4_unicode_ci'), 2
+            )[0]
+                ?: 'utf8mb4';
 
-            $table->string('old_url')->collation($collation.'_bin')->unique();
-            $table->string('new_url')->collation($collation.'_bin')->nullable();
+            $table->string('old_url')->collation($collation . '_bin')->unique();
+            $table->string('new_url')->collation($collation . '_bin')->nullable();
             $table->smallInteger('status')->default(301)->index();
 
             $table->timestamps();

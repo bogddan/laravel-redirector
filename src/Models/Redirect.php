@@ -15,18 +15,19 @@ use Bogddan\Redirects\Exceptions\RedirectException;
  *
  * @method static Builder whereNewUrl(string $url)
  * @method static Builder whereOldUrl(string $url)
+ * @method static create(string[] $array)
  */
 class Redirect extends Model implements RedirectModelContract
 {
     /**
      * The database table.
      */
-    protected string $table = 'redirects';
+    protected $table = 'redirects';
 
     /**
      * The attributes that are mass assignable.
      */
-    protected array $fillable = [
+    protected $fillable = [
         'old_url',
         'new_url',
         'new_url_external',
@@ -41,7 +42,7 @@ class Redirect extends Model implements RedirectModelContract
         parent::boot();
 
         static::saving(function (self $model) {
-            if (trim(mb_strtolower($model->old_url), '/') == trim(mb_strtolower($model->new_url), '/')) {
+            if (mb_strtolower(trim($model->old_url, '/')) === trim(mb_strtolower($model->new_url), '/')) {
                 throw RedirectException::sameUrls();
             }
 
@@ -59,15 +60,20 @@ class Redirect extends Model implements RedirectModelContract
         $this->attributes['old_url'] = $this->parseRelativeUrl($value, false);
     }
 
-    protected function parseRelativeUrl(string $url, $fragment = true): string
+    protected function parseRelativeUrl(string $url, $fragment = null): string|null
     {
         $parsed = parse_url($url);
+
+        if (!\is_array($parsed)) {
+            return null;
+        }
+
         $path = $parsed['path'];
-        if (! empty($parsed['query'])) {
-            $path .= '?'.$parsed['query'];
+        if (!empty($parsed['query'])) {
+            $path .= '?' . $parsed['query'];
         }
         if ($fragment && ! empty($parsed['fragment'])) {
-            $path .= '#'.$parsed['fragment'];
+            $path .= '#' . $parsed['fragment'];
         }
 
         return trim($path, '/');

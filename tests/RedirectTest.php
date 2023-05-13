@@ -9,7 +9,7 @@ use Bogddan\Redirects\Models\Redirect;
 class RedirectTest extends TestCase
 {
     /** @test */
-    public function it_redirects_a_request()
+    public function it_redirects_a_request(): void
     {
         Redirect::create([
             'old_url' => 'old-url',
