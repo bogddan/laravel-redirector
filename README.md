@@ -31,7 +31,7 @@ This package can be useful from an SEO perspective, when in your application, yo
   > Accessing `/modified-yet-again` will redirect to `/original` AND   
   > Accessing `/modified-again` will redirect to `/original` AND   
   > Accessing `/modified` will redirect to `/original`
-  
+
 ### Installation
 
 Install the package via Composer:
