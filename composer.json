@@ -1,14 +1,17 @@
 {
-    "name": "bogddan/laravel-redirects",
-    "description": "Nested URLs redirect logic for Laravel",
-    "license": "MIT",
+    "name": "bogddan/redirector",
+    "description": "A comprehensive Laravel package for managing redirects with ease.",
+    "type": "library",
     "keywords": [
         "laravel",
         "redirect",
+        "manager",
         "url",
         "slug",
         "seo"
     ],
+    "homepage": "https://github.com/bogddan/redirector",
+    "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "authors": [
@@ -20,6 +23,11 @@
         {
             "name": "Adrien Foulon",
             "email": "adrien.foulon@tukan.hu",
+            "role": "Developer"
+        },
+        {
+            "name": "Bogdan Ciobanu",
+            "email": "bogddan@gmail.com",
             "role": "Developer"
         }
     ],
