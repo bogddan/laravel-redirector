@@ -1,9 +1,9 @@
 ### Nested redirects for Laravel
 
-[![Build Status](https://travis-ci.org/Bogddan/laravel-redirects.svg?branch=master)](https://travis-ci.org/Bogddan/laravel-redirects)
+[![Build Status](https://travis-ci.org/Bogddan/redirector.svg?branch=master)](https://travis-ci.org/Bogddan/redirector)
 [![StyleCI](https://github.styleci.io/repos/447570955/shield?branch=master)](https://github.styleci.io/repos/447570955?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Bogddan/laravel-redirects/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Bogddan/laravel-redirects/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/Bogddan/laravel-redirects/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Bogddan/laravel-redirects/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Bogddan/redirector/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Bogddan/redirector/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/Bogddan/redirector/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Bogddan/redirector/?branch=master)
 
 - [Overview](#overview)
 - [Installation](#installation)
@@ -37,7 +37,7 @@ This package can be useful from an SEO perspective, when in your application, yo
 Install the package via Composer:
 
 ```
-composer require Bogddan/laravel-redirects
+composer require Bogddan/redirector
 ```
 
 Publish the config file with:
